@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.chatop.backend.dto.LoginRequest;
 import com.chatop.backend.dto.RegisterRequest;
 import com.chatop.backend.entity.User;
 import com.chatop.backend.repository.UserRepository;
@@ -30,5 +31,14 @@ public class AuthService {
         user.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         user.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
         return userRepository.save(user);
+    }
+
+    public User login(LoginRequest request) {
+        User user = userRepository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new RuntimeException("Email ou mot de passe incorrect"));
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            throw new RuntimeException("Email ou mot de passe incorrect");
+        }
+        return user;
     }
 }
