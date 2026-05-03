@@ -5,9 +5,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.chatop.backend.dto.RegisterRequest;
-import com.chatop.backend.entity.User;
 import com.chatop.backend.service.AuthService;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import com.chatop.backend.dto.AuthResponse;
 import com.chatop.backend.dto.LoginRequest;
 
 @RestController
@@ -21,15 +22,15 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<User> register(@RequestBody RegisterRequest request) {
-        User user = authService.register(request);
-        return ResponseEntity.ok(user);
+    public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request) {
+        String token = authService.register(request);
+        return ResponseEntity.ok(new AuthResponse(token));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<User> login(@RequestBody LoginRequest request) {
-        User user = authService.login(request);
-        return ResponseEntity.ok(user);
+    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
+        String token = authService.login(request);
+        return ResponseEntity.ok(new AuthResponse(token));
     }
 
 }
