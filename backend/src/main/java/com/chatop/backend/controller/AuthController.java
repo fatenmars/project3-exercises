@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.chatop.backend.dto.RegisterRequest;
 import com.chatop.backend.service.AuthService;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import com.chatop.backend.dto.AuthResponse;
 import com.chatop.backend.dto.LoginRequest;
 
