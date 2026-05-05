@@ -1,0 +1,29 @@
+package com.chatop.backend.controller;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import com.chatop.backend.dto.CreateMessageRequest;
+import com.chatop.backend.dto.MessageResponse;
+import com.chatop.backend.service.MessageService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+@RestController
+@RequestMapping("/api/messages")
+public class MessageController {
+
+    private final MessageService messageService;
+
+    public MessageController(MessageService messageService) {
+        this.messageService = messageService;
+    }
+
+    @PostMapping
+    public ResponseEntity<MessageResponse> createMessage(@RequestBody CreateMessageRequest request) {
+        messageService.createMessage(request);
+        return ResponseEntity.ok(new MessageResponse("Message send with success"));
+
+    }
+
+}

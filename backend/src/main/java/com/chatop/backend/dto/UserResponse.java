@@ -1,13 +1,16 @@
 package com.chatop.backend.dto;
 
 import java.sql.Timestamp;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UserResponse {
 
     private Long id;
     private String name;
     private String email;
+    @JsonProperty("created_at")
     private Timestamp createdAt;
+    @JsonProperty("updated_at")
     private Timestamp updatedAt;
 
     public UserResponse() {
