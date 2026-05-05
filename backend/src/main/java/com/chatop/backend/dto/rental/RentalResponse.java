@@ -1,44 +1,39 @@
-package com.chatop.backend.entity;
+package com.chatop.backend.dto.rental;
 
 import java.sql.Timestamp;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-@Entity
-@Table(name = "rentals")
-public class Rental {
+public class RentalResponse {
 
-    @Id
-    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false)
     private String name;
-
-    @Column(nullable = false)
     private Float surface;
-
-    @Column(nullable = false)
     private Float price;
-
-    @Column(nullable = false)
     private String picture;
-
-    @Column(nullable = false)
     private String description;
-
-    @Column(name = "owner_id", nullable = false)
+    @JsonProperty("owner_id")
     private Long ownerId;
-
-    @Column(name = "created_at", nullable = false)
+    @JsonProperty("created_at")
     private Timestamp createdAt;
-
-    @Column(name = "updated_at", nullable = false)
+    @JsonProperty("updated_at")
     private Timestamp updatedAt;
+
+    public RentalResponse() {
+    }
+
+    public RentalResponse(Long id, String name, Float surface, Float price, String picture, String description,
+            Long ownerId, Timestamp createdAt, Timestamp updatedAt) {
+        this.id = id;
+        this.name = name;
+        this.surface = surface;
+        this.price = price;
+        this.picture = picture;
+        this.description = description;
+        this.ownerId = ownerId;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
 
     public Long getId() {
         return id;
