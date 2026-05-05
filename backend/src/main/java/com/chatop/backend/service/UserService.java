@@ -2,7 +2,7 @@ package com.chatop.backend.service;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import com.chatop.backend.dto.UserResponse;
+import com.chatop.backend.dto.user.UserResponse;
 import com.chatop.backend.entity.User;
 import com.chatop.backend.repository.UserRepository;
 

@@ -3,8 +3,9 @@ package com.chatop.backend.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.chatop.backend.dto.CreateMessageRequest;
-import com.chatop.backend.dto.MessageResponse;
+
+import com.chatop.backend.dto.message.CreateMessageRequest;
+import com.chatop.backend.dto.message.MessageResponse;
 import com.chatop.backend.service.MessageService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

@@ -1,4 +1,4 @@
-package com.chatop.backend.dto;
+package com.chatop.backend.dto.message;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
