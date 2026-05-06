@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/api/rentals")
@@ -42,6 +44,13 @@ public class RentalController {
     @GetMapping("/{id}")
     public ResponseEntity<RentalResponse> getRentalById(@PathVariable Long id) {
         return ResponseEntity.ok(rentalService.getRentalById(id));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<MessageResponse> updateRental(@PathVariable Long id,
+            @ModelAttribute CreateRentalRequest request) {
+        rentalService.updateRental(id, request);
+        return ResponseEntity.ok(new MessageResponse("Rental updated!"));
     }
 
 }
