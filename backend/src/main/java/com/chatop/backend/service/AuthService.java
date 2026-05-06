@@ -3,7 +3,6 @@ package com.chatop.backend.service;
 import java.sql.Timestamp;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import com.chatop.backend.dto.auth.LoginRequest;
 import com.chatop.backend.dto.auth.RegisterRequest;
 import com.chatop.backend.entity.User;

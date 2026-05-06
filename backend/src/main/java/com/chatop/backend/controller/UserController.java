@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.chatop.backend.dto.user.UserResponse;
 import com.chatop.backend.service.UserService;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 @RestController
 public class UserController {
 
@@ -17,11 +19,13 @@ public class UserController {
     }
 
     @GetMapping("/api/auth/me")
+    @Operation(summary = "Récupère les informations de l'utilisateur actuellement connecté")
     public ResponseEntity<UserResponse> getCurrentUser() {
         return ResponseEntity.ok(userService.getCurrentUser());
     }
 
     @GetMapping("/api/user/{id}")
+    @Operation(summary = "Récupère les informations d'un utilisateur spécifique par son ID")
     public ResponseEntity<UserResponse> getUserById(@PathVariable Long id) {
         return ResponseEntity.ok(userService.getUserById(id));
     }
