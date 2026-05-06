@@ -2,7 +2,6 @@ package com.chatop.backend.config;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -26,25 +25,17 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
             FilterChain filterChain) throws ServletException, IOException {
 
-        // Récupérer le header Authorization
         String authHeader = request.getHeader("Authorization");
 
-        // Si pas de header ou ne commence pas par "Bearer ", on passe au filtre suivant
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        // Extraire le token
         String token = authHeader.substring(7);
 
-        // Valider le token
         if (jwtService.isTokenValid(token)) {
-
-            // Extrair l'email du token
             String email = jwtService.extractEmail(token);
-            System.out.println("Email extrait: " + email);
-            // Marquer l'utilisateur comme authentifié dans Spring Security
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(email, null,
                     new ArrayList<>());
 
