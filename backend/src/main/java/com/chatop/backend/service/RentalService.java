@@ -70,4 +70,19 @@ public class RentalService {
         rental.setUpdatedAt(new java.sql.Timestamp(System.currentTimeMillis()));
         rentalRepository.save(rental);
     }
+
+    public RentalResponse getRentalById(Long id) {
+        Rental rental = rentalRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Location non trouvée"));
+        return new RentalResponse(
+                rental.getId(),
+                rental.getName(),
+                rental.getSurface(),
+                rental.getPrice(),
+                rental.getPicture(),
+                rental.getDescription(),
+                rental.getOwnerId(),
+                rental.getCreatedAt(),
+                rental.getUpdatedAt());
+    }
 }

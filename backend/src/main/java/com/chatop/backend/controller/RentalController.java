@@ -6,12 +6,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import com.chatop.backend.dto.message.MessageResponse;
 import com.chatop.backend.dto.rental.CreateRentalRequest;
+import com.chatop.backend.dto.rental.RentalResponse;
 import com.chatop.backend.dto.rental.RentalsResponse;
 import com.chatop.backend.service.RentalService;
 import java.io.IOException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @RestController
@@ -35,6 +37,11 @@ public class RentalController {
             @RequestParam("picture") MultipartFile picture) throws IOException {
         rentalService.createRental(request, picture);
         return ResponseEntity.ok(new MessageResponse("Rental created!"));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<RentalResponse> getRentalById(@PathVariable Long id) {
+        return ResponseEntity.ok(rentalService.getRentalById(id));
     }
 
 }
