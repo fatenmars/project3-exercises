@@ -2,7 +2,6 @@ package com.chatop.backend.service;
 
 import java.sql.Timestamp;
 import org.springframework.stereotype.Service;
-
 import com.chatop.backend.dto.message.CreateMessageRequest;
 import com.chatop.backend.entity.Message;
 import com.chatop.backend.repository.MessageRepository;

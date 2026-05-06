@@ -1,7 +1,6 @@
 package com.chatop.backend.dto.rental;
 
 import java.sql.Timestamp;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class RentalResponse {
