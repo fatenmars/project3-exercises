@@ -23,4 +23,11 @@ public class UserService {
                 user.getUpdatedAt());
     }
 
+    public UserResponse getUserById(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
+        return new UserResponse(user.getId(), user.getName(), user.getEmail(), user.getCreatedAt(),
+                user.getUpdatedAt());
+    }
+
 }
